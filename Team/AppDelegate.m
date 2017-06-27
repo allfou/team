@@ -16,7 +16,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    // Load App Configurations
+    NSURL *configFile = [[NSBundle mainBundle] URLForResource:@"DefaultPreferences" withExtension:@"plist"];
+    NSDictionary *config = [NSDictionary dictionaryWithContentsOfURL:configFile];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:config];
+    
     return YES;
 }
 
