@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Members" representedClassName="Members" syncable="YES" codeGenerationType="class">
+        <attribute name="memberId" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="realName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teamId" attributeType="String" syncable="YES"/>
+        <relationship name="hasProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profiles" inverseName="belongsToMember" inverseEntity="Profiles" syncable="YES"/>
+    </entity>
+    <entity name="Profiles" representedClassName="Profiles" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picture" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="belongsToMember" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Members" inverseName="hasProfile" inverseEntity="Members" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Members" positionX="-243" positionY="-9" width="128" height="118"/>
+        <element name="Profiles" positionX="88" positionY="-9" width="128" height="103"/>
+    </elements>
 </model>
