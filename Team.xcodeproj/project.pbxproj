@@ -14,6 +14,7 @@
 		F50304981F021B88006D50CF /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F50304971F021B88006D50CF /* SettingsVC.m */; };
 		F503049B1F021C60006D50CF /* SlackService.m in Sources */ = {isa = PBXBuildFile; fileRef = F503049A1F021C60006D50CF /* SlackService.m */; };
 		F503049D1F021CDC006D50CF /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = F503049C1F021CDC006D50CF /* DefaultPreferences.plist */; };
+		F503049F1F0221F3006D50CF /* MemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F503049E1F0221F3006D50CF /* MemberCell.xib */; };
 		F5DEE2621F0217970019D5B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DEE2611F0217970019D5B9 /* main.m */; };
 		F5DEE2651F0217970019D5B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DEE2641F0217970019D5B9 /* AppDelegate.m */; };
 		F5DEE26B1F0217970019D5B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5DEE2691F0217970019D5B9 /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		F50304991F021C60006D50CF /* SlackService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlackService.h; sourceTree = "<group>"; };
 		F503049A1F021C60006D50CF /* SlackService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlackService.m; sourceTree = "<group>"; };
 		F503049C1F021CDC006D50CF /* DefaultPreferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
+		F503049E1F0221F3006D50CF /* MemberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberCell.xib; sourceTree = "<group>"; };
 		F5DEE25D1F0217970019D5B9 /* Team.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Team.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5DEE2611F0217970019D5B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F5DEE2631F0217970019D5B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				F503048F1F021B44006D50CF /* Team.storyboard */,
 				F50304911F021B4C006D50CF /* Settings.storyboard */,
+				F503049E1F0221F3006D50CF /* MemberCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				F5DEE26B1F0217970019D5B9 /* Main.storyboard in Resources */,
 				F50304921F021B4C006D50CF /* Settings.storyboard in Resources */,
 				F503049D1F021CDC006D50CF /* DefaultPreferences.plist in Resources */,
+				F503049F1F0221F3006D50CF /* MemberCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
