@@ -55,10 +55,31 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="wcd-Nn-anu"/>
+                    <connections>
+                        <segue destination="LaS-9O-e5l" kind="show" id="Lm2-n8-VZ7"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09O-46-Cyn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="487" y="215"/>
+        </scene>
+        <!--MemberVC-->
+        <scene sceneID="e5b-ve-52a">
+            <objects>
+                <viewController id="LaS-9O-e5l" customClass="MemberVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GCx-j5-hJZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfJ-rc-IOh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ruE-nh-GGA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yXh-Cj-JYM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1290" y="215"/>
         </scene>
     </scenes>
     <resources>
