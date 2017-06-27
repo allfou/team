@@ -29,7 +29,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Init Navigation Bar (Logo)
     self.navLogo = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"nav_logo.png"]];
-    self.navigationController.navigationItem.titleView = self.navLogo;
+    self.navigationItem.titleView = self.navLogo;
     
     // Init Member Data
     [self getMembersList];

@@ -13,11 +13,18 @@
         <scene sceneID="f2Q-61-WA0">
             <objects>
                 <navigationController id="sMS-B4-42J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Team" image="team" id="g9p-PU-ehf"/>
+                    <tabBarItem key="tabBarItem" title="Team" image="team" id="g9p-PU-ehf">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.0" green="0.53725490200000003" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l1m-0o-eOn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="l1m-0o-eOn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.53725490200000003" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="tYq-ff-Ksr" kind="relationship" relationship="rootViewController" id="0KG-zi-T5t"/>
@@ -31,7 +38,7 @@
         <scene sceneID="fPn-ly-ZoQ">
             <objects>
                 <collectionViewController storyboardIdentifier="TeamVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tYq-ff-Ksr" customClass="TeamVC" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="mDf-YZ-NIb">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="mDf-YZ-NIb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -55,6 +62,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="team" width="16" height="16"/>
+        <image name="team" width="25" height="25"/>
     </resources>
 </document>

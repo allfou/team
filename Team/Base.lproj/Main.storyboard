@@ -17,6 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.53725490196078429" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.0" green="0.53725490200000003" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="vvI-a9-g0f" kind="relationship" relationship="viewControllers" id="Lyh-Ir-S4d"/>
@@ -49,7 +51,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gear" width="16" height="16"/>
-        <image name="team" width="16" height="16"/>
+        <image name="gear" width="25" height="25"/>
+        <image name="team" width="25" height="25"/>
     </resources>
 </document>
