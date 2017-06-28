@@ -68,7 +68,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
     [self.refreshControl.superview sendSubviewToBack:self.refreshControl];
 }
 
-// ************************************************************************************************************
+// ***************************************************************************************************
 
 #pragma mark Notifications
 
@@ -80,7 +80,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
     });
 }
 
-//*****************************************************************************************************************************************
+// ***************************************************************************************************
 
 #pragma mark - Refresh Control
 
@@ -116,7 +116,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
     [self containingScrollViewDidEndDragging:scrollView];
 }
 
-// ************************************************************************************************************
+// ***************************************************************************************************
 
 #pragma mark Data
 
@@ -124,7 +124,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
     [[SlackService sharedManager]getMembersForTeam];
 }
 
-// ************************************************************************************************************
+// ***************************************************************************************************
 
 #pragma mark CollectionView (DataSource & Delegate)
 
@@ -147,10 +147,23 @@ static NSString * const reuseIdentifier = @"memberCellId";
     // Update cell with Member and Profile data
     Members *member = (Members*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     Profiles *profile = (Profiles*)[member valueForKey:@"hasProfile"];
-    cell.usename.text = [[member valueForKey:@"realName"] description];
-    cell.title.text = [[profile valueForKey:@"title"] description];
-    cell.photo.image = [UIImage imageWithData:[profile valueForKey:@"picture"]];
-    [cell.photo setNeedsLayout];
+    
+    // Picture (default to 'team.png' if null)
+    [[SlackService sharedManager] downloadImageFromUrl:[[profile valueForKey:@"picture"] description] forUIImageView:cell.photo];
+    
+    // Username (default to 'Anonymous' if null)
+    if ([[[profile valueForKey:@"realName"] description] isEqualToString:@"(null)"]) {
+        cell.usename.text = @"Anonymous";
+    } else {
+        cell.usename.text = [[member valueForKey:@"realName"] description];
+    }
+    
+    // Title (default to 'No Title' if null)
+    if ([[[profile valueForKey:@"title"] description] isEqualToString:@"(null)"]) {
+        cell.title.text = @"No Title";
+    } else {
+        cell.title.text = [[profile valueForKey:@"title"] description];
+    }
     
     return cell;
 }
@@ -159,7 +172,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
     return 70;
 }
 
-// ************************************************************************************************************
+// ***************************************************************************************************
 
 #pragma mark - NSFetchedResultsController (Delegate)
 

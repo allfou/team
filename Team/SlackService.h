@@ -6,12 +6,14 @@
 //  Copyright © 2017 Fouad Allaoui. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface SlackService : NSObject
 
 + (instancetype)sharedManager;
 
 - (NSArray*)getMembersForTeam;
+
+- (void)downloadImageFromUrl:(NSString*)imageUrl forUIImageView:(UIImageView*)imageView;
 
 @end

@@ -125,6 +125,7 @@
                     NSDictionary *profileDict = memberDict[@"profile"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"email"]] forKey:@"email"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"title"]] forKey:@"title"];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_48"]] forKey:@"picture"];
                     [self storeMemberPictureFromUrl:profileDict[@"image_48"] inProfile:profile];
                     [member setValue:profile forKey:@"hasProfile"];
                     
@@ -141,6 +142,7 @@
                     NSDictionary *profileDict = memberDict[@"profile"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"email"]] forKey:@"email"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"title"]] forKey:@"title"];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_48"]] forKey:@"picture"];
                     [self storeMemberPictureFromUrl:profileDict[@"image_48"] inProfile:profile];
                     [fetchedObjects[0] setValue:profile forKey:@"hasProfile"];
                 }
@@ -153,20 +155,67 @@
 }
 
 - (void)storeMemberPictureFromUrl:(NSString*)imageUrl inProfile:(Profiles*)profile {
-    
     NSURL *url = [NSURL URLWithString:imageUrl];
-    
     NSURLSessionDataTask *downloadDataTask = [[NSURLSession sharedSession]
-                                              dataTaskWithURL:url
-                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                  if (error) {
-                                                      NSLog(@"%@", [error localizedDescription]);
-                                                  } else {
-                                                      [profile setValue:data forKey:@"picture"];
-                                                  }
-                                              }];
+              dataTaskWithURL:url
+              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                  if (error) {
+                      NSLog(@"%@", [error localizedDescription]);
+                  } else {
+                      
+                      // We store the image locally in documentsDirectory then we store the path in CoreData
+                      NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                      NSString *documentsDirectory = [paths objectAtIndex:0];
+                      NSString *imagePath =[documentsDirectory stringByAppendingPathComponent:[imageUrl lastPathComponent]];
+                      if (![data writeToFile:imagePath atomically:NO]) {
+                          NSLog(@"Failed to cache image data to disk");
+                      }
+                      else {
+                        [profile setValue:imagePath forKey:@"pictureCached"];
+                      }
+                  }
+              }];
     
     [downloadDataTask resume];
+}
+
+// ***************************************************************************************************
+
+#pragma mark - Public Methods
+
+- (void)downloadImageFromUrl:(NSString*)imageUrl forUIImageView:(UIImageView*)imageView {
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]];
+        UIImage *placeholderImage = [UIImage imageNamed:@"team"];
+        __weak UIImageView *weakImgView = imageView;
+    
+        // Use AFNetworking as much as possible! If no network connection then load cached images...
+        [weakImgView setImageWithURLRequest:request
+                           placeholderImage:placeholderImage
+                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {                                                                                
+                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                            weakImgView.alpha = 0.0f;
+                                            weakImgView.image = image;
+                                            [UIView animateWithDuration:0.5f animations:^{
+                                                weakImgView.alpha = 1.0f;
+                                                [weakImgView setNeedsLayout];
+                                            }];
+                                        });
+                                    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                        NSLog(@"Could not find remote image");
+                                        
+                                        // Look in the cache if the photo was previously downloaded and load it
+                                        NSData *imgData = [NSData dataWithContentsOfFile:imageUrl];
+                                        UIImage *photo = [[UIImage alloc] initWithData:imgData];
+                                        
+                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                            weakImgView.alpha = 0.0f;
+                                            weakImgView.image = photo;
+                                            [UIView animateWithDuration:0.5f animations:^{
+                                                weakImgView.alpha = 1.0f;
+                                                [weakImgView setNeedsLayout];
+                                            }];
+                                        });
+                                    }];
 }
 
 @end

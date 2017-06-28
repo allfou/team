@@ -27,12 +27,22 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1b4-iX-Gdv">
                                         <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="team" translatesAutoresizingMaskIntoConstraints="NO" id="kjW-HU-Tbm">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="team" translatesAutoresizingMaskIntoConstraints="NO" id="kjW-HU-Tbm">
                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="kjW-HU-Tbm" secondAttribute="trailing" id="JKT-76-vLs"/>
                                             <constraint firstAttribute="height" constant="35" id="V2c-5J-oTm"/>
+                                            <constraint firstAttribute="bottom" secondItem="kjW-HU-Tbm" secondAttribute="bottom" id="aKn-cD-kHv"/>
+                                            <constraint firstItem="kjW-HU-Tbm" firstAttribute="top" secondItem="1b4-iX-Gdv" secondAttribute="top" id="ogF-aL-bCW"/>
+                                            <constraint firstItem="kjW-HU-Tbm" firstAttribute="leading" secondItem="1b4-iX-Gdv" secondAttribute="leading" id="vrO-ve-s7y"/>
                                             <constraint firstAttribute="width" constant="35" id="y4D-fh-HPZ"/>
                                         </constraints>
                                     </stackView>
