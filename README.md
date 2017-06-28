@@ -9,7 +9,7 @@ Create the following Podfile:
 ```
 platform :ios, '10.0'
 
-target 'SlackTeam' do
+target 'Team' do
   pod 'AFNetworking', '~> 3.0'
 end
 ```
@@ -18,4 +18,10 @@ Then, run the following command:
 
 ```
 $ pod install
+```
+
+Update the API Token in DefaultPreferences.plist with your own token to test with different Teams
+
+```
+slackToken = @"YOUR_API_TOKEN"
 ```
