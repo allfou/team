@@ -19,3 +19,9 @@ Then, run the following command:
 ```
 $ pod install
 ```
+
+Update the API Token in DefaultPreferences.plist with your own token to test with different Teams
+
+```
+slackToken = @"YOUR_API_TOKEN"
+```
