@@ -13,7 +13,7 @@
 //  2. User pulls down to refresh: We also pull data from remote server then update CoreData
 //  3. Airplane Mode or App termination: If CoreData is not empty, then display local data to the user
 //  4. No internet connection during Initial Launch: Display a relevent message to the User
-//
+//  5. Invalid Slack API token or no members found for given team: Display a relevent message to the User
 //
 
 #import "SlackService.h"
@@ -74,7 +74,8 @@
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    NSDictionary *parameters = @{@"token": self.slackToken};
+    //NSDictionary *parameters = @{@"token": self.slackToken};
+    NSDictionary *parameters = @{@"token": @""};
     NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:self.slackApiUrl parameters:parameters error:nil];
     
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
@@ -84,22 +85,25 @@
         
         // If error then display a relevant error message to the user
         if (error) {
-            NSLog(@"Error: %@", error);
-            
-            NSString *userErrorMessage = @"";
-            
             // No internet connection
             if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == -1009) {
-                userErrorMessage = @"You may want to check your Internet connection. It appears to be offline.";
+                NSString *userErrorMessage = @"You may want to check your Internet connection. It appears to be offline (Pulldown to retry)";
+                
+                // Let the Controller display an alert message to the User by sending out a notification
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"displayUserMsgMessageEvent" object:userErrorMessage];
             }
+            
             // Add more error cases here...
         }
         
         // If result is empty then display a relevant info message to the user
         else if ([responseObject[@"members"] count] == 0) {
-            NSString *userInfoMessage = @"No members found for the team.";
+            NSString *userInfoMessage = @"No members found for this team.";
             
-            // Else map JSON response into CoreData objects that will be displayed to the user
+            // Let the Controller display an alert message to the User
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"displayUserMsgMessageEvent" object:userInfoMessage];
+            
+        // Else map JSON response into CoreData objects that will be displayed to the user
         } else {
             for (NSDictionary *memberDict in responseObject[@"members"]) {
                 

@@ -116,6 +116,14 @@
 			name = CustomCell;
 			sourceTree = "<group>";
 		};
+		6F743B5A1F045C0600C33F60 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F5DEE26C1F0217970019D5B9 /* Team.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		C4071B563DB59540AF8CC10E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,13 +172,6 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		F503048D1F021B1E006D50CF /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		F503048E1F021B22006D50CF /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,7 +208,7 @@
 			children = (
 				F503048A1F021B01006D50CF /* Utils */,
 				F503048E1F021B22006D50CF /* Services */,
-				F503048D1F021B1E006D50CF /* Model */,
+				6F743B5A1F045C0600C33F60 /* Model */,
 				F503048C1F021B18006D50CF /* Views */,
 				F503048B1F021B09006D50CF /* Controllers */,
 				F5DEE2631F0217970019D5B9 /* AppDelegate.h */,
@@ -215,7 +216,6 @@
 				F5DEE2691F0217970019D5B9 /* Main.storyboard */,
 				F5DEE2711F0217970019D5B9 /* LaunchScreen.storyboard */,
 				F5DEE26F1F0217970019D5B9 /* Assets.xcassets */,
-				F5DEE26C1F0217970019D5B9 /* Team.xcdatamodeld */,
 				F5DEE2601F0217970019D5B9 /* Supporting Files */,
 			);
 			path = Team;

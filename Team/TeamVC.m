@@ -6,6 +6,7 @@
 //  Copyright © 2017 Fouad Allaoui. All rights reserved.
 //
 
+#import <ISMessages/ISMessages.h>
 #import "TeamVC.h"
 #import "SlackService.h"
 #import "AppDelegate.h"
@@ -76,9 +77,16 @@ static NSString * const reuseIdentifier = @"memberCellId";
 - (void)displayUserMsg:(NSNotification*)notification {
     NSString *msg = [notification object];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // TODO: display msg in modal window
-    });
+    [ISMessages showCardAlertWithTitle:@"Info"
+                               message:msg
+                              duration:6.f
+                           hideOnSwipe:YES
+                             hideOnTap:YES
+                             alertType:ISAlertTypeInfo
+                         alertPosition:ISAlertPositionTop
+                               didHide:^(BOOL finished) {
+                                   NSLog(@"Alert did hide.");
+                               }];
 }
 
 // ***************************************************************************************************
