@@ -14,6 +14,6 @@
 
 - (NSArray*)getMembersForTeam;
 
-- (void)downloadImageFromUrl:(NSString*)imageUrl forUIImageView:(UIImageView*)imageView;
+- (void)downloadImageFromUrl:(NSString*)imageUrl withCachedImage:(NSString*)cachedImageUrl forUIImageView:(UIImageView*)imageView;
 
 @end

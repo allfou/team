@@ -27,7 +27,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1b4-iX-Gdv">
                                         <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="team" translatesAutoresizingMaskIntoConstraints="NO" id="kjW-HU-Tbm">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="member" translatesAutoresizingMaskIntoConstraints="NO" id="kjW-HU-Tbm">
                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -131,15 +131,15 @@
             <connections>
                 <outlet property="photo" destination="kjW-HU-Tbm" id="mpI-8n-81b"/>
                 <outlet property="title" destination="i4R-MO-URu" id="R5N-9U-KbU"/>
-                <outlet property="usename" destination="a2O-Iq-csG" id="R8U-KN-2W5"/>
+                <outlet property="username" destination="a2O-Iq-csG" id="vRC-MK-SB7"/>
             </connections>
             <point key="canvasLocation" x="-259" y="0.0"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="email" width="30" height="30"/>
+        <image name="member" width="53" height="53"/>
         <image name="phone" width="30" height="30"/>
         <image name="skype" width="30" height="30"/>
-        <image name="team" width="25" height="25"/>
     </resources>
 </document>

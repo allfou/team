@@ -12,6 +12,7 @@
 #import "MemberCell.h"
 #import "Members+CoreDataClass.h"
 #import "Profiles+CoreDataClass.h"
+#import "MemberVC.h"
 #import "Theme.h"
 
 @interface TeamVC ()
@@ -148,14 +149,16 @@ static NSString * const reuseIdentifier = @"memberCellId";
     Members *member = (Members*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     Profiles *profile = (Profiles*)[member valueForKey:@"hasProfile"];
     
-    // Picture (default to 'team.png' if null)
-    [[SlackService sharedManager] downloadImageFromUrl:[[profile valueForKey:@"picture"] description] forUIImageView:cell.photo];
+    // Picture (default to 'member.png' if null)
+    [[SlackService sharedManager] downloadImageFromUrl:[[profile valueForKey:@"thumbnailUrl"] description]
+                                       withCachedImage:[[profile valueForKey:@"thumbnailCachedUrl"] description]
+                                        forUIImageView:cell.photo];
     
     // Username (default to 'Anonymous' if null)
-    if ([[[profile valueForKey:@"realName"] description] isEqualToString:@"(null)"]) {
-        cell.usename.text = @"Anonymous";
+    if ([[[member valueForKey:@"name"] description] isEqualToString:@"(null)"]) {
+        cell.username.text = @"Anonymous";
     } else {
-        cell.usename.text = [[member valueForKey:@"realName"] description];
+        cell.username.text = [[member valueForKey:@"name"] description];
     }
     
     // Title (default to 'No Title' if null)
@@ -165,11 +168,46 @@ static NSString * const reuseIdentifier = @"memberCellId";
         cell.title.text = [[profile valueForKey:@"title"] description];
     }
     
+    // Set all the invisible attributes used for Member Detail view
+    cell.pictureUrl = [[profile valueForKey:@"pictureUrl"] description];
+    cell.cachedThumbnailUrl = [[profile valueForKey:@"thumbnailCachedUrl"] description];
+    cell.realName = [[member valueForKey:@"realName"] description];
+    cell.email = [[profile valueForKey:@"email"] description];
+    cell.phone = [[profile valueForKey:@"phone"] description];
+    cell.skype = [[profile valueForKey:@"skype"] description];
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 70;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *showMemberDetailsSegue = @"showMemberDetailsSegue";
+    [self performSegueWithIdentifier:showMemberDetailsSegue sender:self];
+}
+
+// ***************************************************************************************************
+
+#pragma mark - Navigation and Segues
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    MemberCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+
+    if ([segue.destinationViewController isKindOfClass:[MemberVC class]]) {
+        MemberVC *vc = segue.destinationViewController;
+        vc.pictureUrl = cell.pictureUrl;
+        vc.cachedThumbnailUrl = cell.cachedThumbnailUrl;
+        vc.userName = cell.username.text;
+        vc.memberTitle = cell.title.text;
+        vc.realName = cell.realName;
+        vc.email = cell.email;
+        vc.phone = cell.phone;
+        vc.skype = cell.skype;
+    }
 }
 
 // ***************************************************************************************************

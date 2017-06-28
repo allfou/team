@@ -9,13 +9,16 @@
     </entity>
     <entity name="Profiles" representedClassName="Profiles" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="picture" optional="YES" attributeType="String" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="pictureCached" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pictureUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="skype" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailCachedUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailUrl" optional="YES" attributeType="String" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="belongsToMember" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Members" inverseName="hasProfile" inverseEntity="Members" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Members" positionX="-243" positionY="-9" width="128" height="118"/>
-        <element name="Profiles" positionX="54" positionY="-9" width="128" height="118"/>
+        <element name="Members" positionX="-117" positionY="-45" width="128" height="118"/>
+        <element name="Profiles" positionX="88" positionY="-18" width="128" height="163"/>
     </elements>
 </model>

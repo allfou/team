@@ -10,4 +10,13 @@
 
 @interface MemberVC : UIViewController
 
+@property (nonatomic) NSString *pictureUrl;
+@property (nonatomic) NSString *cachedThumbnailUrl;
+@property (nonatomic) NSString *realName;
+@property (nonatomic) NSString *userName;
+@property (nonatomic) NSString *memberTitle;
+@property (nonatomic) NSString *email;
+@property (nonatomic) NSString *phone;
+@property (nonatomic) NSString *skype;
+
 @end

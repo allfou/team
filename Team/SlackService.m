@@ -125,8 +125,9 @@
                     NSDictionary *profileDict = memberDict[@"profile"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"email"]] forKey:@"email"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"title"]] forKey:@"title"];
-                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_48"]] forKey:@"picture"];
-                    [self storeMemberPictureFromUrl:profileDict[@"image_48"] inProfile:profile];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_72"]] forKey:@"thumbnailUrl"];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_original"]] forKey:@"pictureUrl"];
+                    [self storeMemberPictureFromUrl:profileDict[@"image_72"] inProfile:profile];
                     [member setValue:profile forKey:@"hasProfile"];
                     
                     // Else update existing Member and Profile entries
@@ -142,8 +143,9 @@
                     NSDictionary *profileDict = memberDict[@"profile"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"email"]] forKey:@"email"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"title"]] forKey:@"title"];
-                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_48"]] forKey:@"picture"];
-                    [self storeMemberPictureFromUrl:profileDict[@"image_48"] inProfile:profile];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_72"]] forKey:@"thumbnailUrl"];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_original"]] forKey:@"pictureUrl"];
+                    [self storeMemberPictureFromUrl:profileDict[@"image_72"] inProfile:profile];
                     [fetchedObjects[0] setValue:profile forKey:@"hasProfile"];
                 }
             }
@@ -171,7 +173,7 @@
                           NSLog(@"Failed to cache image data to disk");
                       }
                       else {
-                        [profile setValue:imagePath forKey:@"pictureCached"];
+                        [profile setValue:imagePath forKey:@"thumbnailCachedUrl"];
                       }
                   }
               }];
@@ -183,12 +185,12 @@
 
 #pragma mark - Public Methods
 
-- (void)downloadImageFromUrl:(NSString*)imageUrl forUIImageView:(UIImageView*)imageView {
+- (void)downloadImageFromUrl:(NSString*)imageUrl withCachedImage:(NSString*)cachedImageUrl forUIImageView:(UIImageView*)imageView {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]];
-        UIImage *placeholderImage = [UIImage imageNamed:@"team"];
+        UIImage *placeholderImage = [UIImage imageNamed:@"member"];
         __weak UIImageView *weakImgView = imageView;
     
-        // Use AFNetworking as much as possible! If no network connection then load cached images...
+        // Use AFNetworking to download remote image. If no network connection then load cached images if it exist...
         [weakImgView setImageWithURLRequest:request
                            placeholderImage:placeholderImage
                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {                                                                                
@@ -201,20 +203,27 @@
                                             }];
                                         });
                                     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                        NSLog(@"Could not find remote image");
                                         
-                                        // Look in the cache if the photo was previously downloaded and load it
-                                        NSData *imgData = [NSData dataWithContentsOfFile:imageUrl];
-                                        UIImage *photo = [[UIImage alloc] initWithData:imgData];
-                                        
-                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                            weakImgView.alpha = 0.0f;
-                                            weakImgView.image = photo;
-                                            [UIView animateWithDuration:0.5f animations:^{
-                                                weakImgView.alpha = 1.0f;
-                                                [weakImgView setNeedsLayout];
-                                            }];
-                                        });
+                                        // Use the cached thumbnail if it exist locally...
+                                        NSData *imgData = [NSData dataWithContentsOfFile:cachedImageUrl];
+                                        if (imgData) {
+                                            NSLog(@"Use cached thumbnail");
+                                            UIImage *photo = [[UIImage alloc] initWithData:imgData];
+                                            
+                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                weakImgView.alpha = 0.0f;
+                                                weakImgView.image = photo;
+                                                [UIView animateWithDuration:0.5f animations:^{
+                                                    weakImgView.alpha = 1.0f;
+                                                    [weakImgView setNeedsLayout];
+                                                }];
+                                            });
+                                        } else {
+                                            NSLog(@"Use default thumbnail");
+                                            
+                                            // If no local thumbnail then default to member.png photo...
+                                            weakImgView.image = [UIImage imageNamed:@"member"];
+                                        }
                                     }];
 }
 
