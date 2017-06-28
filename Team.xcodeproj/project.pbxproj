@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F0A2E241F031574007887E4 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A2E231F031574007887E4 /* MemberCell.m */; };
 		982CE722B7697E95E1F76AC0 /* libPods-Team.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF8A6FB1A40A01732F721BE /* libPods-Team.a */; };
 		F50304901F021B44006D50CF /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F503048F1F021B44006D50CF /* Team.storyboard */; };
 		F50304921F021B4C006D50CF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F50304911F021B4C006D50CF /* Settings.storyboard */; };
@@ -44,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F0A2E221F031574007887E4 /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
+		6F0A2E231F031574007887E4 /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
+		6F0A2E251F035F7F007887E4 /* Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
 		7B6F9F1B27FCD2102BA74A32 /* Pods-Team.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team/Pods-Team.release.xcconfig"; sourceTree = "<group>"; };
 		9BF8A6FB1A40A01732F721BE /* libPods-Team.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Team.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E4D0F92307D4102B0BC3D1 /* Pods-Team.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team/Pods-Team.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		F503048A1F021B01006D50CF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6F0A2E251F035F7F007887E4 /* Theme.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -145,6 +150,8 @@
 				F503048F1F021B44006D50CF /* Team.storyboard */,
 				F50304911F021B4C006D50CF /* Settings.storyboard */,
 				F503049E1F0221F3006D50CF /* MemberCell.xib */,
+				6F0A2E221F031574007887E4 /* MemberCell.h */,
+				6F0A2E231F031574007887E4 /* MemberCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -432,6 +439,7 @@
 				F5DEE2651F0217970019D5B9 /* AppDelegate.m in Sources */,
 				F5DEE2621F0217970019D5B9 /* main.m in Sources */,
 				F50304951F021B6C006D50CF /* TeamVC.m in Sources */,
+				6F0A2E241F031574007887E4 /* MemberCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +592,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VHVF86FA7C;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = Team/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.staglab.Team;
@@ -597,6 +606,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VHVF86FA7C;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = Team/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.staglab.Team;

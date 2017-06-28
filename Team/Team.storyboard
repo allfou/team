@@ -27,7 +27,7 @@
                         <color key="tintColor" red="0.0" green="0.53725490200000003" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="tYq-ff-Ksr" kind="relationship" relationship="rootViewController" id="0KG-zi-T5t"/>
+                        <segue destination="WLt-vw-QH4" kind="relationship" relationship="rootViewController" id="3lX-JG-aUH"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MRa-dx-ZkM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -35,33 +35,26 @@
             <point key="canvasLocation" x="-386" y="215"/>
         </scene>
         <!--TeamVC-->
-        <scene sceneID="fPn-ly-ZoQ">
+        <scene sceneID="wi4-XT-q2C">
             <objects>
-                <collectionViewController storyboardIdentifier="TeamVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tYq-ff-Ksr" customClass="TeamVC" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="mDf-YZ-NIb">
+                <tableViewController id="WLt-vw-QH4" customClass="TeamVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PuC-L4-wJy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vL4-Wo-6CL">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
-                            <outlet property="dataSource" destination="tYq-ff-Ksr" id="kUQ-2f-oP1"/>
-                            <outlet property="delegate" destination="tYq-ff-Ksr" id="2Y1-kb-u2Z"/>
+                            <outlet property="dataSource" destination="WLt-vw-QH4" id="QvH-u2-GHE"/>
+                            <outlet property="delegate" destination="WLt-vw-QH4" id="g9t-V2-bcU"/>
                         </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="wcd-Nn-anu"/>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="5ny-jm-sWf"/>
                     <connections>
-                        <segue destination="LaS-9O-e5l" kind="show" identifier="goToMemberSegue" id="Lm2-n8-VZ7"/>
+                        <segue destination="LaS-9O-e5l" kind="show" identifier="showMemberDetailsSegue" id="PoB-fo-gkj"/>
                     </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="09O-46-Cyn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tzb-4K-cUr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487" y="215"/>
+            <point key="canvasLocation" x="250" y="215"/>
         </scene>
         <!--MemberVC-->
         <scene sceneID="e5b-ve-52a">
@@ -79,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yXh-Cj-JYM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1290" y="215"/>
+            <point key="canvasLocation" x="840" y="215"/>
         </scene>
     </scenes>
     <resources>

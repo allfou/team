@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   DefaultPreferences.plist
-   Team
-
-   Created by Fouad Allaoui on 6/26/17.
-   Copyright (c) 2017 Fouad Allaoui. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-        <key>slackToken</key>
-        <string>xoxp-4698769766-4698769768-202894927314-69336d18b23fc8b851831694f25e1dfc</string>
-        <key>slackApiUrl</key>
-        <string>https://slack.com/api/users.list</string>
-    </dict>
+<dict>
+	<key>slackToken</key>
+	<string>xoxp-4698769766-4698769768-202894927314-69336d18b23fc8b851831694f25e1dfc</string>
+	<key>slackApiUrl</key>
+	<string>https://slack.com/api/users.list</string>
+</dict>
 </plist>
