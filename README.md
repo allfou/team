@@ -9,7 +9,7 @@ Create the following Podfile:
 ```
 platform :ios, '10.0'
 
-target 'SlackTeam' do
+target 'Team' do
   pod 'AFNetworking', '~> 3.0'
 end
 ```
