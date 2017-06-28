@@ -106,6 +106,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F0A2E261F041B55007887E4 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				F503049E1F0221F3006D50CF /* MemberCell.xib */,
+				6F0A2E221F031574007887E4 /* MemberCell.h */,
+				6F0A2E231F031574007887E4 /* MemberCell.m */,
+			);
+			name = CustomCell;
+			sourceTree = "<group>";
+		};
 		C4071B563DB59540AF8CC10E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,10 +144,10 @@
 		F503048B1F021B09006D50CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F50304A01F022777006D50CF /* MemberVC.h */,
-				F50304A11F022777006D50CF /* MemberVC.m */,
 				F50304931F021B6C006D50CF /* TeamVC.h */,
 				F50304941F021B6C006D50CF /* TeamVC.m */,
+				F50304A01F022777006D50CF /* MemberVC.h */,
+				F50304A11F022777006D50CF /* MemberVC.m */,
 				F50304961F021B88006D50CF /* SettingsVC.h */,
 				F50304971F021B88006D50CF /* SettingsVC.m */,
 			);
@@ -149,9 +159,7 @@
 			children = (
 				F503048F1F021B44006D50CF /* Team.storyboard */,
 				F50304911F021B4C006D50CF /* Settings.storyboard */,
-				F503049E1F0221F3006D50CF /* MemberCell.xib */,
-				6F0A2E221F031574007887E4 /* MemberCell.h */,
-				6F0A2E231F031574007887E4 /* MemberCell.m */,
+				6F0A2E261F041B55007887E4 /* CustomCell */,
 			);
 			name = Views;
 			sourceTree = "<group>";

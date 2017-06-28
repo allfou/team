@@ -47,6 +47,9 @@ static NSString * const reuseIdentifier = @"memberCellId";
     self.navLogo = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"nav_logo.png"]];
     self.navigationItem.titleView = self.navLogo;
     
+    // Init Table View
+    self.tableView.separatorColor = [UIColor clearColor];
+    
     // Init Data
     [self getMembersList];
     
@@ -67,7 +70,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
 
 // ************************************************************************************************************
 
-//#pragma mark Notifications
+#pragma mark Notifications
 
 - (void)displayUserMsg:(NSNotification*)notification {
     NSString *msg = [notification object];
@@ -123,7 +126,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
 
 // ************************************************************************************************************
 
-#pragma mark CollectionView DataSource
+#pragma mark CollectionView (DataSource & Delegate)
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [[[self fetchedResultsController] sections] count];
@@ -141,19 +144,24 @@ static NSString * const reuseIdentifier = @"memberCellId";
         cell = [[MemberCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
     
-    // Configure the cell from Member and Profile data
+    // Update cell with Member and Profile data
     Members *member = (Members*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     Profiles *profile = (Profiles*)[member valueForKey:@"hasProfile"];
-    
     cell.usename.text = [[member valueForKey:@"realName"] description];
-    cell.email.text = [[profile valueForKey:@"email"] description];
+    cell.title.text = [[profile valueForKey:@"title"] description];
+    cell.photo.image = [UIImage imageWithData:[profile valueForKey:@"picture"]];
+    [cell.photo setNeedsLayout];
     
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70;
+}
+
 // ************************************************************************************************************
 
-#pragma mark - NSFetchedResultsController + Delegate
+#pragma mark - NSFetchedResultsController (Delegate)
 
 - (void)initializeFetchedResultsController {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Members"];
