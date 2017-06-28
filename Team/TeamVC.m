@@ -157,32 +157,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
     Members *member = (Members*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     Profiles *profile = (Profiles*)[member valueForKey:@"hasProfile"];
     
-    // Picture (default to 'member.png' if null)
-    [[SlackService sharedManager] downloadImageFromUrl:[[profile valueForKey:@"thumbnailUrl"] description]
-                                       withCachedImage:[[profile valueForKey:@"thumbnailCachedUrl"] description]
-                                        forUIImageView:cell.photo];
-    
-    // Username (default to 'Anonymous' if null)
-    if ([[[member valueForKey:@"name"] description] isEqualToString:@"(null)"]) {
-        cell.username.text = @"Anonymous";
-    } else {
-        cell.username.text = [[member valueForKey:@"name"] description];
-    }
-    
-    // Title (default to 'No Title' if null)
-    if ([[[profile valueForKey:@"title"] description] isEqualToString:@"(null)"]) {
-        cell.title.text = @"No Title";
-    } else {
-        cell.title.text = [[profile valueForKey:@"title"] description];
-    }
-    
-    // Set all the invisible attributes used for Member Detail view
-    cell.pictureUrl = [[profile valueForKey:@"pictureUrl"] description];
-    cell.cachedThumbnailUrl = [[profile valueForKey:@"thumbnailCachedUrl"] description];
-    cell.realName = [[member valueForKey:@"realName"] description];
-    cell.email = [[profile valueForKey:@"email"] description];
-    cell.phone = [[profile valueForKey:@"phone"] description];
-    cell.skype = [[profile valueForKey:@"skype"] description];
+    [cell updateCellWithMember:member andProfile:profile];
     
     return cell;
 }

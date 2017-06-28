@@ -124,8 +124,10 @@
                     // Create Profile entry
                     Profiles *profile = [[Profiles alloc] initWithEntity:self.profileEntity insertIntoManagedObjectContext:self.manageContext];
                     NSDictionary *profileDict = memberDict[@"profile"];
-                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"email"]] forKey:@"email"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"title"]] forKey:@"title"];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"email"]] forKey:@"email"];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"phone"]] forKey:@"phone"];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"skype"]] forKey:@"skype"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_72"]] forKey:@"thumbnailUrl"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_original"]] forKey:@"pictureUrl"];
                     [self storeMemberPictureFromUrl:profileDict[@"image_72"] inProfile:profile];
@@ -142,8 +144,10 @@
                     // Update Member Profile entry
                     Profiles *profile = [[Profiles alloc] initWithEntity:self.profileEntity insertIntoManagedObjectContext:self.manageContext];
                     NSDictionary *profileDict = memberDict[@"profile"];
-                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"email"]] forKey:@"email"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"title"]] forKey:@"title"];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"email"]] forKey:@"email"];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"phone"]] forKey:@"phone"];
+                    [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"skype"]] forKey:@"skype"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_72"]] forKey:@"thumbnailUrl"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_original"]] forKey:@"pictureUrl"];
                     [self storeMemberPictureFromUrl:profileDict[@"image_72"] inProfile:profile];

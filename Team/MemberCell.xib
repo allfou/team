@@ -79,7 +79,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fnb-Uq-tVi">
                                                 <rect key="frame" x="0.0" y="0.0" width="25.5" height="25"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zla-BQ-j7i">
+                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zla-BQ-j7i">
                                                         <rect key="frame" x="0.0" y="0.0" width="25.5" height="25"/>
                                                         <state key="normal" image="email"/>
                                                     </button>
@@ -88,7 +88,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WeU-xe-cwY">
                                                 <rect key="frame" x="37.5" y="0.0" width="25" height="25"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2R-6h-cwl">
+                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2R-6h-cwl">
                                                         <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                         <state key="normal" image="phone"/>
                                                     </button>
@@ -97,7 +97,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wY0-n0-8JQ">
                                                 <rect key="frame" x="74.5" y="0.0" width="25.5" height="25"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1R-jV-pC0">
+                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1R-jV-pC0">
                                                         <rect key="frame" x="0.0" y="0.0" width="25.5" height="25"/>
                                                         <state key="normal" image="skype"/>
                                                     </button>
@@ -129,7 +129,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="emailButton" destination="zla-BQ-j7i" id="pYY-M8-m5p"/>
+                <outlet property="phoneButton" destination="R2R-6h-cwl" id="i2e-cI-HZ8"/>
                 <outlet property="photo" destination="kjW-HU-Tbm" id="mpI-8n-81b"/>
+                <outlet property="skypeButton" destination="q1R-jV-pC0" id="kkg-ZJ-Id7"/>
                 <outlet property="title" destination="i4R-MO-URu" id="R5N-9U-KbU"/>
                 <outlet property="username" destination="a2O-Iq-csG" id="vRC-MK-SB7"/>
             </connections>

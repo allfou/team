@@ -6,6 +6,7 @@
 //  Copyright © 2017 Fouad Allaoui. All rights reserved.
 //
 
+#import <ISMessages/ISMessages.h>
 #import "MemberVC.h"
 #import "SlackService.h"
 
@@ -15,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *realNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
+@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
+@property (weak, nonatomic) IBOutlet UIButton *skypeButton;
 
 @end
 
@@ -28,11 +32,80 @@
     self.titleLabel.text = self.memberTitle;
     
     [[SlackService sharedManager] downloadImageFromUrl:self.pictureUrl withCachedImage:self.cachedThumbnailUrl forUIImageView:self.picture];
+    
+    // Email
+    if (self.email) {
+        [self.emailButton setImage:[UIImage imageNamed:@"email_active"] forState:UIControlStateNormal];
+        [self.emailButton setUserInteractionEnabled:YES];
+    } else {
+        [self.emailButton setImage:[UIImage imageNamed:@"email"] forState:UIControlStateNormal];
+        [self.emailButton setUserInteractionEnabled:NO];
+    }
+    
+    // Phone
+    if (self.phone) {
+        [self.phoneButton setImage:[UIImage imageNamed:@"phone_active"] forState:UIControlStateNormal];
+        [self.phoneButton setUserInteractionEnabled:YES];
+    } else {
+        [self.phoneButton setImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
+        [self.phoneButton setUserInteractionEnabled:NO];
+    }
+    
+    // Skype
+    if (self.skype) {
+        [self.skypeButton setImage:[UIImage imageNamed:@"skype_active"] forState:UIControlStateNormal];
+        [self.skypeButton setUserInteractionEnabled:YES];
+    } else {
+        [self.skypeButton setImage:[UIImage imageNamed:@"skype"] forState:UIControlStateNormal];
+        [self.skypeButton setUserInteractionEnabled:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+// For now, just display a message when user press any contact button...
+
+- (IBAction)displayEmail:(id)sender {
+    [ISMessages showCardAlertWithTitle:@"Email:"
+                               message:self.email
+                              duration:2.f
+                           hideOnSwipe:YES
+                             hideOnTap:YES
+                             alertType:ISAlertTypeSuccess
+                         alertPosition:ISAlertPositionBottom
+                               didHide:^(BOOL finished) {
+                                   NSLog(@"Alert did hide.");
+                               }];
+}
+
+- (IBAction)displayPhone:(id)sender {
+    [ISMessages showCardAlertWithTitle:@"Phone:"
+                               message:self.phone
+                              duration:2.f
+                           hideOnSwipe:YES
+                             hideOnTap:YES
+                             alertType:ISAlertTypeSuccess
+                         alertPosition:ISAlertPositionBottom
+                               didHide:^(BOOL finished) {
+                                   NSLog(@"Alert did hide.");
+                               }];
+}
+
+- (IBAction)displaySkype:(id)sender {
+    [ISMessages showCardAlertWithTitle:@"Skype ID:"
+                               message:self.skype
+                              duration:2.f
+                           hideOnSwipe:YES
+                             hideOnTap:YES
+                             alertType:ISAlertTypeSuccess
+                         alertPosition:ISAlertPositionBottom
+                               didHide:^(BOOL finished) {
+                                   NSLog(@"Alert did hide.");
+                               }];
+}
+
 
 @end

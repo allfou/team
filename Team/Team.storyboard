@@ -150,14 +150,23 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUp-66-ahW">
                                                                 <rect key="frame" x="0.0" y="0.0" width="98.5" height="80"/>
                                                                 <state key="normal" image="email"/>
+                                                                <connections>
+                                                                    <action selector="displayEmail:" destination="LaS-9O-e5l" eventType="touchUpInside" id="XcY-AT-GcB"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TA3-iz-0Hm">
                                                                 <rect key="frame" x="98.5" y="0.0" width="98" height="80"/>
                                                                 <state key="normal" image="phone"/>
+                                                                <connections>
+                                                                    <action selector="displayPhone:" destination="LaS-9O-e5l" eventType="touchUpInside" id="Kd1-S7-MPn"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2p-Bv-Tir">
                                                                 <rect key="frame" x="196.5" y="0.0" width="98.5" height="80"/>
                                                                 <state key="normal" image="skype"/>
+                                                                <connections>
+                                                                    <action selector="displaySkype:" destination="LaS-9O-e5l" eventType="touchUpInside" id="xVd-GA-gzG"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -208,8 +217,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailButton" destination="cUp-66-ahW" id="Xx7-sy-BcF"/>
+                        <outlet property="phoneButton" destination="TA3-iz-0Hm" id="N0g-h8-z5d"/>
                         <outlet property="picture" destination="bUm-tp-dW5" id="O4X-r5-wWJ"/>
                         <outlet property="realNameLabel" destination="vrY-wO-ciH" id="N9P-eH-Ixo"/>
+                        <outlet property="skypeButton" destination="B2p-Bv-Tir" id="8kB-LB-ChC"/>
                         <outlet property="titleLabel" destination="WaI-Bm-O2N" id="hEJ-Lf-GHL"/>
                         <outlet property="usernameLabel" destination="1jB-GB-4tW" id="8jE-F6-TBB"/>
                     </connections>

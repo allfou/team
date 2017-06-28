@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Members+CoreDataClass.h"
+#import "Profiles+CoreDataClass.h"
 
 @interface MemberCell : UITableViewCell
 
@@ -22,5 +24,11 @@
 @property (nonatomic) NSString *email;
 @property (nonatomic) NSString *phone;
 @property (nonatomic) NSString *skype;
+
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
+@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
+@property (weak, nonatomic) IBOutlet UIButton *skypeButton;
+
+- (void)updateCellWithMember:(Members*)member andProfile:(Profiles*)profile;
 
 @end
