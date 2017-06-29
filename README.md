@@ -24,6 +24,7 @@ end
 Then, run the following command:
 
 ```
+$ pod update
 $ pod install
 ```
 
