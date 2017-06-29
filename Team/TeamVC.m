@@ -53,7 +53,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
     self.tableView.separatorColor = [UIColor clearColor];
     
     // Init Data
-    [self getMembersList];
+    [[SlackService sharedManager]getMembersForTeam];
     
     // Init Members data from CoreData
     [self initializeFetchedResultsController];
@@ -94,7 +94,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
 #pragma mark - Refresh Control
 
 - (void)pullToRefresh {
-    // Improve refresh UI effect
+    // A better pull to refresh user experience by slowing down the animation
     double delayInSeconds = 0.5f;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -110,7 +110,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
     [self containingScrollViewDidEndDragging:scrollView];
     
     if (self.isRefreshing) {
-        [self getMembersList];
+        [[SlackService sharedManager]getMembersForTeam];
     }
 }
 
@@ -123,14 +123,6 @@ static NSString * const reuseIdentifier = @"memberCellId";
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView {
     [self containingScrollViewDidEndDragging:scrollView];
-}
-
-// ***************************************************************************************************
-
-#pragma mark Data
-
-- (void)getMembersList {
-    [[SlackService sharedManager]getMembersForTeam];
 }
 
 // ***************************************************************************************************
@@ -152,11 +144,11 @@ static NSString * const reuseIdentifier = @"memberCellId";
     if (cell == nil) {
         cell = [[MemberCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-    
-    // Update cell with Member and Profile data
+        
     Members *member = (Members*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     Profiles *profile = (Profiles*)[member valueForKey:@"hasProfile"];
     
+    // Update cell with Member and Profile data
     [cell updateCellWithMember:member andProfile:profile];
     
     return cell;

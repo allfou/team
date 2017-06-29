@@ -12,7 +12,7 @@
 
 + (instancetype)sharedManager;
 
-- (NSArray*)getMembersForTeam;
+- (void)getMembersForTeam;
 
 - (void)downloadImageFromUrl:(NSString*)imageUrl withCachedImage:(NSString*)cachedImageUrl forUIImageView:(UIImageView*)imageView;
 

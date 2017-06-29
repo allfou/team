@@ -72,7 +72,12 @@
     }
 
     // Picture and thumbnail (default to member.png)
-    self.pictureUrl = [[profile valueForKey:@"pictureUrl"] description];
+    if ((![profile valueForKey:@"pictureUrl"]) || ([[[profile valueForKey:@"pictureUrl"] description] isEqualToString:@"(null)"])) {
+        self.pictureUrl = [[profile valueForKey:@"thumbnailUrl"] description];
+    } else {
+        self.pictureUrl = [[profile valueForKey:@"pictureUrl"] description];
+    }
+    
     self.cachedThumbnailUrl = [[profile valueForKey:@"thumbnailCachedUrl"] description];
 }
 

@@ -16,15 +16,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    // Load App Configurations
+    // Load App Configurations from DefaultPreferences.plist
     NSURL *configFile = [[NSBundle mainBundle] URLForResource:@"DefaultPreferences" withExtension:@"plist"];
     NSDictionary *config = [NSDictionary dictionaryWithContentsOfURL:configFile];
     [[NSUserDefaults standardUserDefaults] registerDefaults:config];
-    
-    // Update Initial App Launch Status to YES
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasNeverBeenLaunched"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"hasNeverBeenLaunched"];
-    }
     
     return YES;
 }

@@ -7,10 +7,10 @@
 //
 //
 //
-//  Use Cases handled by getMembersForTeam method:
+//  Use Cases handled by the Slack Service:
 //
-//  1. Initial launch of the App: CoreData is empty, we pull data from remote server then populate CoreData
-//  2. User pulls down to refresh: We also pull data from remote server then update CoreData
+//  1. Initial launch of the App: CoreData is empty, then pull members data from remote server and populate CoreData
+//  2. User pulls down to refresh: Same as 1. pull members data from remote server then update CoreData
 //  3. Airplane Mode or App termination: If CoreData is not empty, then display local data to the user
 //  4. No internet connection during Initial Launch: Display a relevent message to the User
 //  5. Invalid Slack API token or no members found for given team: Display a relevent message to the User
@@ -68,16 +68,18 @@
     return self;
 }
 
-- (NSArray*)getMembersForTeam {
+// Get all members of a team (using Slack API Token), then insert or update the data in CoreData entities
+- (void)getMembersForTeam {
     // Display Network Activity Monitor
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    // Prepare request to get members list using Slack API Endpoint
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     NSDictionary *parameters = @{@"token": self.slackToken};
     NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:self.slackApiUrl parameters:parameters error:nil];
     
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        
         // Stop network activity monitor
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
@@ -100,7 +102,7 @@
             // Let the Controller display an alert message to the User
             [[NSNotificationCenter defaultCenter] postNotificationName:@"displayUserMsgMessageEvent" object:userInfoMessage];
             
-        // Else map JSON response into CoreData objects that will be displayed to the user
+        // Else map JSON response into CoreData entities
         } else {
             for (NSDictionary *memberDict in responseObject[@"members"]) {
                 
@@ -130,13 +132,13 @@
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"skype"]] forKey:@"skype"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_72"]] forKey:@"thumbnailUrl"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_original"]] forKey:@"pictureUrl"];
-                    [self storeMemberPictureFromUrl:profileDict[@"image_72"] inProfile:profile];
+                    [self saveMemberThumbnailFromUrl:profileDict[@"image_72"] inProfile:profile];
                     [member setValue:profile forKey:@"hasProfile"];
                     
                     // Else update existing Member and Profile entries
                 } else {
-                    // We assume there will only be one member entry for a given memberId
-                    // Also, we don't need to update the memberId since it should be unchanged
+                    // We assume there will be only one member entry for a given memberId
+                    // Also, we don't need to update the memberId since it shouldn't change
                     [fetchedObjects[0] setValue:[NSString stringWithFormat:@"%@", memberDict[@"real_name"]] forKey:@"realName"];
                     [fetchedObjects[0] setValue:[NSString stringWithFormat:@"%@", memberDict[@"name"]] forKey:@"name"];
                     [fetchedObjects[0] setValue:[NSString stringWithFormat:@"%@", memberDict[@"team_id"]] forKey:@"teamId"];
@@ -150,18 +152,18 @@
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"skype"]] forKey:@"skype"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_72"]] forKey:@"thumbnailUrl"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_original"]] forKey:@"pictureUrl"];
-                    [self storeMemberPictureFromUrl:profileDict[@"image_72"] inProfile:profile];
+                    [self saveMemberThumbnailFromUrl:profileDict[@"image_72"] inProfile:profile];
                     [fetchedObjects[0] setValue:profile forKey:@"hasProfile"];
                 }
             }
         }
     }];
     [dataTask resume];
-    
-    return nil;
 }
 
-- (void)storeMemberPictureFromUrl:(NSString*)imageUrl inProfile:(Profiles*)profile {
+// Stores a member thumbnail locally in documentsDirectory and store the file path in CoreData
+// The app uses the cached thumbnail to handle offline modes such as no network connection, airplane mode, etc.
+- (void)saveMemberThumbnailFromUrl:(NSString*)imageUrl inProfile:(Profiles*)profile {
     NSURL *url = [NSURL URLWithString:imageUrl];
     NSURLSessionDataTask *downloadDataTask = [[NSURLSession sharedSession]
               dataTaskWithURL:url
@@ -169,8 +171,6 @@
                   if (error) {
                       NSLog(@"%@", [error localizedDescription]);
                   } else {
-                      
-                      // We store the image locally in documentsDirectory then we store the path in CoreData
                       NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
                       NSString *documentsDirectory = [paths objectAtIndex:0];
                       NSString *imagePath =[documentsDirectory stringByAppendingPathComponent:[imageUrl lastPathComponent]];
