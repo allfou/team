@@ -194,7 +194,7 @@
     __weak UIImageView *weakImgView = imageView;
     
     // If no image url is provided then load default image
-    if ([imageUrl isEqualToString:@"(null)"]) {
+    if ((!imageUrl) || [imageUrl isEqualToString:@"(null)"]) {
         [self loadDefaultImage:cachedImageUrl forUIImageView:weakImgView];
         
     // Else, use AFNetworking to download remote image

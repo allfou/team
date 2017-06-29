@@ -27,28 +27,28 @@
                                         forUIImageView:self.photo];
     
     // Username (default to 'Anonymous' if null)
-    if ([[[member valueForKey:@"name"] description] isEqualToString:@"(null)"]) {
+    if ((![[member valueForKey:@"name"] description]) || ([[[member valueForKey:@"name"] description] isEqualToString:@"(null)"])) {
         self.username.text = @"Anonymous";
     } else {
         self.username.text = [[member valueForKey:@"name"] description];
     }
     
     // Title (default to 'No Title' if null)
-    if ([[[profile valueForKey:@"title"] description] isEqualToString:@"(null)"]) {
+    if ((![profile valueForKey:@"title"]) || ([[[profile valueForKey:@"title"] description] isEqualToString:@"(null)"])) {
         self.title.text = @"No Title";
     } else {
         self.title.text = [[profile valueForKey:@"title"] description];
     }
     
     // Real Name (default to 'Anonymous')
-    if ([[[member valueForKey:@"realName"] description] isEqualToString:@"(null)"]) {
+    if ((![member valueForKey:@"realName"]) || ([[[member valueForKey:@"realName"] description] isEqualToString:@"(null)"])) {
         self.realName = @"Anonymous";
     } else {
         self.realName = [[member valueForKey:@"realName"] description];
     }
     
     // Email
-    if ([[[profile valueForKey:@"email"] description] isEqualToString:@"(null)"]) {
+    if ((![profile valueForKey:@"email"]) || ([[[profile valueForKey:@"email"] description] isEqualToString:@"(null)"])) {
         [self.emailButton setImage:[UIImage imageNamed:@"email"] forState:UIControlStateNormal];
     } else {
         self.email = [[profile valueForKey:@"email"] description];
@@ -56,7 +56,7 @@
     }
     
     // Phone
-    if ([[[profile valueForKey:@"phone"] description] isEqualToString:@"(null)"]) {
+    if ((![profile valueForKey:@"phone"]) || ([[[profile valueForKey:@"phone"] description] isEqualToString:@"(null)"])) {
         [self.phoneButton setImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
     } else {
         self.phone = [[profile valueForKey:@"phone"] description];
@@ -64,7 +64,7 @@
     }
     
     // Skype
-    if ([[[profile valueForKey:@"skype"] description] isEqualToString:@"(null)"]) {
+    if ((![profile valueForKey:@"skype"]) || ([[[profile valueForKey:@"skype"] description] isEqualToString:@"(null)"])) {
         [self.skypeButton setImage:[UIImage imageNamed:@"skype"] forState:UIControlStateNormal];
     } else {
         self.skype = [[profile valueForKey:@"skype"] description];

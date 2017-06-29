@@ -34,7 +34,7 @@
     [[SlackService sharedManager] downloadImageFromUrl:self.pictureUrl withCachedImage:self.cachedThumbnailUrl forUIImageView:self.picture];
     
     // Email
-    if (self.email) {
+    if ((self.email) && !([self.email isEqualToString:@"(null)"])) {
         [self.emailButton setImage:[UIImage imageNamed:@"email_active"] forState:UIControlStateNormal];
         [self.emailButton setUserInteractionEnabled:YES];
     } else {
@@ -43,7 +43,7 @@
     }
     
     // Phone
-    if (self.phone) {
+    if ((self.phone) && !([self.phone isEqualToString:@"(null)"])) {
         [self.phoneButton setImage:[UIImage imageNamed:@"phone_active"] forState:UIControlStateNormal];
         [self.phoneButton setUserInteractionEnabled:YES];
     } else {
@@ -52,7 +52,7 @@
     }
     
     // Skype
-    if (self.skype) {
+    if ((self.skype) && !([self.skype isEqualToString:@"(null)"])) {
         [self.skypeButton setImage:[UIImage imageNamed:@"skype_active"] forState:UIControlStateNormal];
         [self.skypeButton setUserInteractionEnabled:YES];
     } else {

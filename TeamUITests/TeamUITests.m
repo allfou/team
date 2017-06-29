@@ -32,9 +32,51 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // Use recording to get started writing UI tests.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testMain {
+    // Refresh Data
+    [self testPullDownToRefreshMemberList];
+    
+    // Check member details
+    [self testDisplayMemberDetails];
+    
+    // Test Settings View
+    [self testDisplayAcknowledgementsInSettings];
+}
+
+- (void)testPullDownToRefreshMemberList {
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationFaceUp;
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationFaceUp;
+    
+    // Pull down to refresh list
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElement *firstCell = [[app.cells elementBoundByIndex: 0] childrenMatchingType:XCUIElementTypeOther].element;
+    XCUICoordinate *start = [firstCell coordinateWithNormalizedOffset:CGVectorMake(0.0, 0.0)];
+    XCUICoordinate *finish = [firstCell coordinateWithNormalizedOffset:CGVectorMake(0.0, 6.0)];
+    [start pressForDuration:0 thenDragToCoordinate:finish];
+}
+
+- (void)testDisplayMemberDetails {
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationFaceUp;
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationFaceUp;
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[app.cells elementBoundByIndex: 0] childrenMatchingType:XCUIElementTypeOther].element tap];
+    [app.buttons[@"email active"] tap];
+    [app.buttons[@"phone active"] tap];
+    [app.buttons[@"skype active"] tap];
+    [[[[app.navigationBars[@"MemberVC"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Back"] elementBoundByIndex:0] tap];
+}
+
+- (void)testDisplayAcknowledgementsInSettings {
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationFaceUp;
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationFaceUp;
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElementQuery *tabBarsQuery = app.tabBars;
+    [tabBarsQuery.buttons[@"Settings"] tap];
+    [app.tables.staticTexts[@"Acknowledgements"] tap];
+    [app.navigationBars[@"UITableView"].buttons[@"Settings"] tap];
+    [tabBarsQuery.buttons[@"Team"] tap];
 }
 
 @end

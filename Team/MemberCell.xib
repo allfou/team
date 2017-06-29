@@ -113,6 +113,9 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Wei-NG-f7L" secondAttribute="bottom" constant="10" id="9iD-gX-2Lw"/>
                             <constraint firstAttribute="trailing" secondItem="Wei-NG-f7L" secondAttribute="trailing" constant="10" id="Bvq-PF-YFd"/>
@@ -128,6 +131,9 @@
                     <constraint firstItem="zZ7-OR-VsW" firstAttribute="top" secondItem="Oax-av-w5L" secondAttribute="top" id="WJy-iF-6jm"/>
                 </constraints>
             </tableViewCellContentView>
+            <accessibility key="accessibilityConfiguration">
+                <bool key="isElement" value="YES"/>
+            </accessibility>
             <connections>
                 <outlet property="emailButton" destination="zla-BQ-j7i" id="pYY-M8-m5p"/>
                 <outlet property="phoneButton" destination="R2R-6h-cwl" id="i2e-cI-HZ8"/>
