@@ -2,7 +2,6 @@
 
 A simple app that display details about a Slack team, using Slack API.
 
-<h4>List of members for a given Slack team:</h4>
 <p align="center">
 <img width="338" height="600" src="Images/ScreenShot_Team.PNG.png?raw=true">
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
