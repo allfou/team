@@ -27,7 +27,7 @@
                                         forUIImageView:self.photo];
     
     // Username (default to 'Anonymous' if null)
-    if ((![[member valueForKey:@"name"] description]) || ([[[member valueForKey:@"name"] description] isEqualToString:@"(null)"])) {
+    if ((![member valueForKey:@"name"]) || ([[[member valueForKey:@"name"] description] isEqualToString:@"(null)"])) {
         self.username.text = @"Anonymous";
     } else {
         self.username.text = [[member valueForKey:@"name"] description];
@@ -50,6 +50,7 @@
     // Email
     if ((![profile valueForKey:@"email"]) || ([[[profile valueForKey:@"email"] description] isEqualToString:@"(null)"])) {
         [self.emailButton setImage:[UIImage imageNamed:@"email"] forState:UIControlStateNormal];
+        self.email = @"";
     } else {
         self.email = [[profile valueForKey:@"email"] description];
         [self.emailButton setImage:[UIImage imageNamed:@"email_active"] forState:UIControlStateNormal];
@@ -58,6 +59,7 @@
     // Phone
     if ((![profile valueForKey:@"phone"]) || ([[[profile valueForKey:@"phone"] description] isEqualToString:@"(null)"])) {
         [self.phoneButton setImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
+        self.phone = @"";
     } else {
         self.phone = [[profile valueForKey:@"phone"] description];
         [self.phoneButton setImage:[UIImage imageNamed:@"phone_active"] forState:UIControlStateNormal];
@@ -66,6 +68,7 @@
     // Skype
     if ((![profile valueForKey:@"skype"]) || ([[[profile valueForKey:@"skype"] description] isEqualToString:@"(null)"])) {
         [self.skypeButton setImage:[UIImage imageNamed:@"skype"] forState:UIControlStateNormal];
+        self.skype = @"";
     } else {
         self.skype = [[profile valueForKey:@"skype"] description];
         [self.skypeButton setImage:[UIImage imageNamed:@"skype_active"] forState:UIControlStateNormal];
@@ -77,7 +80,7 @@
     } else {
         self.pictureUrl = [[profile valueForKey:@"pictureUrl"] description];
     }
-    
+
     self.cachedThumbnailUrl = [[profile valueForKey:@"thumbnailCachedUrl"] description];
 }
 

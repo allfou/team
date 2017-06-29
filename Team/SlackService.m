@@ -132,10 +132,9 @@
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"skype"]] forKey:@"skype"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_72"]] forKey:@"thumbnailUrl"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_original"]] forKey:@"pictureUrl"];
-                    [self saveMemberThumbnailFromUrl:profileDict[@"image_72"] inProfile:profile];
-                    [member setValue:profile forKey:@"hasProfile"];
+                    [self saveThumbnailFromUrl:profileDict[@"image_72"] forMember:member inProfile:profile];
                     
-                    // Else update existing Member and Profile entries
+                // Else update existing Member and Profile entries
                 } else {
                     // We assume there will be only one member entry for a given memberId
                     // Also, we don't need to update the memberId since it shouldn't change
@@ -152,8 +151,7 @@
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"skype"]] forKey:@"skype"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_72"]] forKey:@"thumbnailUrl"];
                     [profile setValue:[NSString stringWithFormat:@"%@", profileDict[@"image_original"]] forKey:@"pictureUrl"];
-                    [self saveMemberThumbnailFromUrl:profileDict[@"image_72"] inProfile:profile];
-                    [fetchedObjects[0] setValue:profile forKey:@"hasProfile"];
+                    [self saveThumbnailFromUrl:profileDict[@"image_72"] forMember:fetchedObjects[0] inProfile:profile];
                 }
             }
         }
@@ -163,7 +161,7 @@
 
 // Stores a member thumbnail locally in documentsDirectory and store the file path in CoreData
 // The app uses the cached thumbnail to handle offline modes such as no network connection, airplane mode, etc.
-- (void)saveMemberThumbnailFromUrl:(NSString*)imageUrl inProfile:(Profiles*)profile {
+- (void)saveThumbnailFromUrl:(NSString*)imageUrl forMember:(Members*)member inProfile:(Profiles*)profile {
     NSURL *url = [NSURL URLWithString:imageUrl];
     NSURLSessionDataTask *downloadDataTask = [[NSURLSession sharedSession]
               dataTaskWithURL:url
@@ -179,6 +177,9 @@
                       }
                       else {
                         [profile setValue:imagePath forKey:@"thumbnailCachedUrl"];
+                          
+                        // Save updated profile for member
+                        [member setValue:profile forKey:@"hasProfile"];
                       }
                   }
               }];
@@ -225,7 +226,6 @@
     // Use the cached thumbnail if it exist locally...
     NSData *imgData = [NSData dataWithContentsOfFile:cachedImageUrl];
     if (imgData) {
-        NSLog(@"Use cached thumbnail");
         UIImage *photo = [[UIImage alloc] initWithData:imgData];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -236,9 +236,9 @@
                 [imageView setNeedsLayout];
             }];
         });
-    } else {
-        NSLog(@"Use default thumbnail");
-        // If no local thumbnail then default to member.png photo...
+        
+    // If no local thumbnail then default to member.png photo...
+    } else {        
         imageView.image = [UIImage imageNamed:@"member"];
     }
 }

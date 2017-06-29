@@ -31,10 +31,11 @@
     self.realNameLabel.text = self.realName;
     self.titleLabel.text = self.memberTitle;
     
+    // Picture
     [[SlackService sharedManager] downloadImageFromUrl:self.pictureUrl withCachedImage:self.cachedThumbnailUrl forUIImageView:self.picture];
     
     // Email
-    if ((self.email) && !([self.email isEqualToString:@"(null)"])) {
+    if ((self.email) && !([self.email isEqualToString:@""])) {
         [self.emailButton setImage:[UIImage imageNamed:@"email_active"] forState:UIControlStateNormal];
         [self.emailButton setUserInteractionEnabled:YES];
     } else {
@@ -43,7 +44,7 @@
     }
     
     // Phone
-    if ((self.phone) && !([self.phone isEqualToString:@"(null)"])) {
+    if ((self.phone) && !([self.phone isEqualToString:@""])) {
         [self.phoneButton setImage:[UIImage imageNamed:@"phone_active"] forState:UIControlStateNormal];
         [self.phoneButton setUserInteractionEnabled:YES];
     } else {
@@ -52,7 +53,7 @@
     }
     
     // Skype
-    if ((self.skype) && !([self.skype isEqualToString:@"(null)"])) {
+    if ((self.skype) && !([self.skype isEqualToString:@""])) {
         [self.skypeButton setImage:[UIImage imageNamed:@"skype_active"] forState:UIControlStateNormal];
         [self.skypeButton setUserInteractionEnabled:YES];
     } else {
@@ -77,7 +78,7 @@
                              alertType:ISAlertTypeSuccess
                          alertPosition:ISAlertPositionBottom
                                didHide:^(BOOL finished) {
-                                   NSLog(@"Alert did hide.");
+                                   // NSLog(@"action");
                                }];
 }
 
@@ -90,7 +91,7 @@
                              alertType:ISAlertTypeSuccess
                          alertPosition:ISAlertPositionBottom
                                didHide:^(BOOL finished) {
-                                   NSLog(@"Alert did hide.");
+                                   // NSLog(@"action");
                                }];
 }
 
@@ -103,7 +104,7 @@
                              alertType:ISAlertTypeSuccess
                          alertPosition:ISAlertPositionBottom
                                didHide:^(BOOL finished) {
-                                   NSLog(@"Alert did hide.");
+                                   // NSLog(@"action");
                                }];
 }
 

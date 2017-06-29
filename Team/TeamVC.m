@@ -85,7 +85,7 @@ static NSString * const reuseIdentifier = @"memberCellId";
                              alertType:ISAlertTypeInfo
                          alertPosition:ISAlertPositionTop
                                didHide:^(BOOL finished) {
-                                   NSLog(@"Alert did hide.");
+                                   //NSLog(@"Action");
                                }];
 }
 
