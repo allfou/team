@@ -21,10 +21,9 @@ target 'Team' do
 end
 ```
 
-Then, run the following command:
+Then, run the following command (you may have to run 'pod update' too):
 
 ```
-$ pod update
 $ pod install
 ```
 
