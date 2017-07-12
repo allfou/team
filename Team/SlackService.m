@@ -87,7 +87,7 @@
         if (error) {
             // No internet connection
             if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == -1009) {
-                NSString *userErrorMessage = @"You may want to check your Internet connection. It appears to be offline (Scroll down to retry)";
+                NSString *userErrorMessage = @"You may want to check your Internet connection. It appears to be offline (Pull down to retry)";
                 
                 // Let the Controller display an alert message to the User by sending out a notification
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"displayUserMsgMessageEvent" object:userErrorMessage];
